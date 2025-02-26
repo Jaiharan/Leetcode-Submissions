@@ -2,7 +2,7 @@ class Solution {
     public int maxAbsoluteSum(int[] nums) {
         int max = maxSubarraySum(nums);
         int min = minSubarraySum(nums);
-        return Math.max(Math.abs(max), Math.abs(min));
+        return Math.max(max, Math.abs(min));
     }
 
     private int maxSubarraySum(int[] arr) {
@@ -12,9 +12,7 @@ class Solution {
         while(i < arr.length) {
             sum += arr[i];
             max = Math.max(max, sum);
-            if(sum < 0) {
-                sum = 0;
-            }
+            if(sum < 0) sum = 0;
             i++;
         }
         return max;
