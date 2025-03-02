@@ -30,6 +30,6 @@ class Solution {
             arr.add(nums2[ind2++]);
         }
 
-        return arr.toArray(int[][]:: new);
+        return arr.toArray(new int[arr.size()][]);
     }
 }
