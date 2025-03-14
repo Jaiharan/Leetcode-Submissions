@@ -1,7 +1,7 @@
 class Solution {
     public int maximumCandies(int[] candies, long k) {
         // range to identify possible distribution
-        int start = 1, end = 10_000_000;
+        int start = 1, end = Integer.MAX_VALUE;
         int ans = 0;
         // search possible distribution using BS
         while(start <= end) {
