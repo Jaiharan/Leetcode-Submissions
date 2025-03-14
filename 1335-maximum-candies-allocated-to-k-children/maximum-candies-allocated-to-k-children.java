@@ -1,12 +1,17 @@
 class Solution {
     public int maximumCandies(int[] candies, long k) {
+        // find max el
+        int max = candies[0];
+        for(int can : candies) {
+            if(can > max) max = can;
+        }
         // range to identify possible distribution
-        int start = 1, end = 10_000_000;
+        int start = 1, end = max;
         int ans = 0;
         // search possible distribution using BS
         while(start <= end) {
             int mid = start + (end - start) / 2;
-            // count possible count of children get candies
+            // count possible count of children who get candies
             long possiChildCount = 0;
             // add posible child 
             for(int c : candies) {
