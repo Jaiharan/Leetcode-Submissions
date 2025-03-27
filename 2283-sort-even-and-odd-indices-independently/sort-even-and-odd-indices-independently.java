@@ -1,27 +1,27 @@
 class Solution {
     public int[] sortEvenOdd(int[] nums) {
-        List<Integer> evenIndices = new ArrayList<>();
-        List<Integer> oddIndices = new ArrayList<>();
+        int n = nums.length;
+        int[] evenFreq = new int[101];
+        int[] oddFreq = new int[101];
 
-        // Separate even and odd indexed elements
-        for (int i = 0; i < nums.length; i++) {
-            if (i % 2 == 0) evenIndices.add(nums[i]);
-            else oddIndices.add(nums[i]);
+        for(int i = 0; i < n; i++) {
+            if(i % 2 == 0) evenFreq[nums[i]]++;
+            else oddFreq[nums[i]]++;
+        }
+        int evenInd = 0, oddInd = 1;
+        for(int i = 0; i <= 100; i++) {
+            while(evenFreq[i]-- > 0) {
+                nums[evenInd] = i;
+                evenInd+=2;
+            }
         }
 
-        // Sort even indices in non-decreasing order
-        Collections.sort(evenIndices);
-
-        // Sort odd indices in non-increasing order
-        oddIndices.sort(Collections.reverseOrder());
-
-        // Merge sorted values back into the original array
-        int evenIdx = 0, oddIdx = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (i % 2 == 0) nums[i] = evenIndices.get(evenIdx++);
-            else nums[i] = oddIndices.get(oddIdx++);
+        for(int i = 100; i >= 0; i--) {
+            while(oddFreq[i]-- > 0) {
+                nums[oddInd] = i;
+                oddInd+=2;
+            }
         }
-
         return nums;
     }
 }
