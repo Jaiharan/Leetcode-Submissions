@@ -1,23 +1,11 @@
 class Solution {
     public long maximumTripletValue(int[] nums) {
-        // maxLeft and maxRigth method
-        int[] maxLeft = new int[nums.length];
-        int[] maxRight = new int[nums.length];
-        long ans = 0;
-        maxLeft[0] = nums[0];
-        maxRight[nums.length-1] = nums[nums.length-1];
-        // feed maxLeft
-        for(int i = 1; i < nums.length; i++) {
-            maxLeft[i] = Math.max(nums[i], maxLeft[i-1]);
-        }
-        // feed maxRight
-        for(int i = nums.length-2; i >= 0; i--) {
-            maxRight[i] = Math.max(nums[i], maxRight[i+1]);
-        }
-        // find triplets
-        for(int i=1; i < nums.length-1; i++) {
-            long temp = (long) (maxLeft[i-1] - nums[i]) * maxRight[i+1];
-            ans = Math.max(ans, temp);
+        // dmax, i max method
+        long ans = 0, dmax = 0, imax = 0, n = nums.length;
+        for(int k = 0; k < n; k++) {
+            ans = Math.max(ans, dmax * nums[k]);
+            dmax = Math.max(dmax, imax - nums[k]);
+            imax = Math.max(imax, nums[k]);
         }
         return ans;
     }
