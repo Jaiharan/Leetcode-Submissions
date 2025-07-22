@@ -1,21 +1,19 @@
 class Solution {
     public int maximumUniqueSubarray(int[] nums) {
-        int ans = 0;
-        int l = 0, r = 0, curr = 0;
-        HashSet<Integer> hs = new HashSet<>();
-        while(r < nums.length) {
-            if(hs.contains(nums[r])) {
-                while (hs.contains(nums[r])) {
-                    curr -= nums[l];
-                    hs.remove(nums[l]);
-                    l++;
-                }
+       int n = nums.length;
+        int[] freq = new int[10001];
+        int l = 0, count = 0, max = 0;
+        for (int r = 0; r < n; r++) {
+            int num = nums[r];
+            while (freq[num] > 0) {
+                freq[nums[l]]--;
+                count -= nums[l];
+                l++;
             }
-            curr += nums[r];
-            if(curr > ans) ans = curr;
-            hs.add(nums[r]);
-            r++;
+            freq[num]++;
+            count += num;
+            max = Math.max(max, count);
         }
-        return ans;
+        return max;
     }
 }
