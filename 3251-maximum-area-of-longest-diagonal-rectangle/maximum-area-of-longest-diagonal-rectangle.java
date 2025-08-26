@@ -1,11 +1,12 @@
 class Solution {
     public int areaOfMaxDiagonal(int[][] dimensions) {
+        // without sqrt
         double max = 0;
         int a = 0, b = 0;
         for(int i = 0; i < dimensions.length; i++) {
             int l = dimensions[i][0];
             int w = dimensions[i][1];
-            double dgL = Math.sqrt((l * l) + (w * w));
+            double dgL = (l * l) + (w * w);
             if(dgL > max) {
                 a = l;
                 b = w;
