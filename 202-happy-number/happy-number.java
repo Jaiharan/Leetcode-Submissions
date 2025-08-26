@@ -1,7 +1,6 @@
 class Solution {
     public boolean isHappy(int n) {
-        int fast = n;
-        int slow = n;
+        int fast = n, slow = n;
         do{
             fast = findHappy(findHappy(fast));
             slow = findHappy(slow);
