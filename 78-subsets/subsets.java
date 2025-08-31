@@ -1,21 +1,21 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
-        List<Integer> op = new ArrayList<>();
-        recurs(nums, 0, op, ans);
-        return ans;
+        List<List<Integer>> subsets = new ArrayList<>();
+        List<Integer> sets = new ArrayList<>();
+        solve(nums, 0, sets, subsets);
+        return subsets;
     }
 
-    private void recurs(int[] nums, int ind, List<Integer> op, List<List<Integer>> ans) {
+    public void solve(int[] nums, int ind, List<Integer> sets, List<List<Integer>> subsets) {
         // base case
         if(ind == nums.length) {
-            ans.add(new ArrayList<>(op));
+            subsets.add(new ArrayList<>(sets));
             return;
         }
 
-        recurs(nums, ind+1, op, ans);
-        op.add(nums[ind]);
-        recurs(nums, ind+1, op, ans);
-        op.remove(op.size() - 1);
+        solve(nums, ind + 1, sets, subsets);
+        sets.add(nums[ind]);
+        solve(nums, ind + 1, sets, subsets);
+        sets.remove(sets.size() - 1);
     }
 }
