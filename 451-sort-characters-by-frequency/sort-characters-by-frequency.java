@@ -5,7 +5,7 @@ class Solution {
             freq.put(s.charAt(i), freq.getOrDefault(s.charAt(i), 0) + 1);
         }
         ArrayList<Character> chars = new ArrayList<>(freq.keySet());
-        Collections.sort(chars, (a, b) -> freq.get(b) - freq.get(a));
+        chars.sort((a, b) -> freq.get(b) - freq.get(a));
         s = "";
         for(char c : chars) {
             int count = freq.get(c);
