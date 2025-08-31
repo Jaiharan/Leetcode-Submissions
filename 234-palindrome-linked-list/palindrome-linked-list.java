@@ -10,18 +10,36 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        ArrayList<Integer> arr = new ArrayList<>();
-        ListNode temp = head;
-        while(temp != null) {
-            arr.add(temp.val);
-            temp = temp.next;
-        }
-        int start = 0, end = arr.size() - 1;
-        while(start <= end) {
-            if(arr.get(start) != arr.get(end)) return false;
-            start++;
-            end--;
+       ListNode mid = findMid(head);
+       ListNode rev = reverse(mid.next);
+       mid.next = null;
+        while(rev != null) {
+            if(rev.val != head.val) return false;
+            rev = rev.next;
+            head = head.next;
         }
         return true;
+    }
+
+    public ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while(curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    public ListNode findMid(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while(fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
     }
 }
