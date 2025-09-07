@@ -11,7 +11,7 @@ class Solution {
         }
         return islands;
     }
-
+    // convert land into sea
     private void dfs(char[][] grid, int i, int j) {
         int m = grid.length, n = grid[0].length;
 
